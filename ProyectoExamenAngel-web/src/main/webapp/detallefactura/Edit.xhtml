@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetallefacturaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetallefacturaLabel_iddetallefactura}" for="iddetallefactura" />
+                    <h:inputText id="iddetallefactura" value="#{detallefacturaController.selected.iddetallefactura}" title="#{bundle.EditDetallefacturaTitle_iddetallefactura}" required="true" requiredMessage="#{bundle.EditDetallefacturaRequiredMessage_iddetallefactura}"/>
+                    <h:outputLabel value="#{bundle.EditDetallefacturaLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{detallefacturaController.selected.cantidad}" title="#{bundle.EditDetallefacturaTitle_cantidad}" required="true" requiredMessage="#{bundle.EditDetallefacturaRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.EditDetallefacturaLabel_precioventa}" for="precioventa" />
+                    <h:inputText id="precioventa" value="#{detallefacturaController.selected.precioventa}" title="#{bundle.EditDetallefacturaTitle_precioventa}" required="true" requiredMessage="#{bundle.EditDetallefacturaRequiredMessage_precioventa}"/>
+                    <h:outputLabel value="#{bundle.EditDetallefacturaLabel_idplato}" for="idplato" />
+                    <h:selectOneMenu id="idplato" value="#{detallefacturaController.selected.idplato}" title="#{bundle.EditDetallefacturaTitle_idplato}" required="true" requiredMessage="#{bundle.EditDetallefacturaRequiredMessage_idplato}">
+                        <f:selectItems value="#{platoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetallefacturaLabel_idfactura}" for="idfactura" />
+                    <h:selectOneMenu id="idfactura" value="#{detallefacturaController.selected.idfactura}" title="#{bundle.EditDetallefacturaTitle_idfactura}" required="true" requiredMessage="#{bundle.EditDetallefacturaRequiredMessage_idfactura}">
+                        <f:selectItems value="#{facturaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetallefacturaLabel_idcocinero}" for="idcocinero" />
+                    <h:selectOneMenu id="idcocinero" value="#{detallefacturaController.selected.idcocinero}" title="#{bundle.EditDetallefacturaTitle_idcocinero}" required="true" requiredMessage="#{bundle.EditDetallefacturaRequiredMessage_idcocinero}">
+                        <f:selectItems value="#{cocineroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detallefacturaController.update}" value="#{bundle.EditDetallefacturaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDetallefacturaViewLink}"/>
+                <br />
+                <h:commandLink action="#{detallefacturaController.prepareList}" value="#{bundle.EditDetallefacturaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDetallefacturaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

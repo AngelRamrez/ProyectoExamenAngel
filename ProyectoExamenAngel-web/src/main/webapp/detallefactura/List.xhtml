@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetallefacturaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDetallefacturaEmpty}" rendered="#{detallefacturaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{detallefacturaController.items.rowCount > 0}">
+                    <h:outputText value="#{detallefacturaController.pagination.pageFirstItem + 1}..#{detallefacturaController.pagination.pageLastItem + 1}/#{detallefacturaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{detallefacturaController.previous}" value="#{bundle.Previous} #{detallefacturaController.pagination.pageSize}" rendered="#{detallefacturaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{detallefacturaController.next}" value="#{bundle.Next} #{detallefacturaController.pagination.pageSize}" rendered="#{detallefacturaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{detallefacturaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallefacturaTitle_iddetallefactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iddetallefactura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallefacturaTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallefacturaTitle_precioventa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precioventa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallefacturaTitle_idplato}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idplato}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallefacturaTitle_idfactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idfactura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallefacturaTitle_idcocinero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcocinero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{detallefacturaController.prepareView}" value="#{bundle.ListDetallefacturaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detallefacturaController.prepareEdit}" value="#{bundle.ListDetallefacturaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detallefacturaController.destroy}" value="#{bundle.ListDetallefacturaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{detallefacturaController.prepareCreate}" value="#{bundle.ListDetallefacturaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDetallefacturaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

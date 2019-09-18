@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMeseroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_idmesero}" for="idmesero" />
+                    <h:inputText id="idmesero" value="#{meseroController.selected.idmesero}" title="#{bundle.EditMeseroTitle_idmesero}" required="true" requiredMessage="#{bundle.EditMeseroRequiredMessage_idmesero}"/>
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{meseroController.selected.nombre}" title="#{bundle.EditMeseroTitle_nombre}" required="true" requiredMessage="#{bundle.EditMeseroRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{meseroController.selected.telefono}" title="#{bundle.EditMeseroTitle_telefono}" required="true" requiredMessage="#{bundle.EditMeseroRequiredMessage_telefono}"/>
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_meserocol}" for="meserocol" />
+                    <h:inputText id="meserocol" value="#{meseroController.selected.meserocol}" title="#{bundle.EditMeseroTitle_meserocol}" />
+                </h:panelGrid>
+                <h:commandLink action="#{meseroController.update}" value="#{bundle.EditMeseroSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMeseroViewLink}"/>
+                <br />
+                <h:commandLink action="#{meseroController.prepareList}" value="#{bundle.EditMeseroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMeseroIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

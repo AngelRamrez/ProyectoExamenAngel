@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMesaLabel_idmesa}" for="idmesa" />
+                    <h:inputText id="idmesa" value="#{mesaController.selected.idmesa}" title="#{bundle.EditMesaTitle_idmesa}" required="true" requiredMessage="#{bundle.EditMesaRequiredMessage_idmesa}"/>
+                    <h:outputLabel value="#{bundle.EditMesaLabel_numeromesa}" for="numeromesa" />
+                    <h:inputText id="numeromesa" value="#{mesaController.selected.numeromesa}" title="#{bundle.EditMesaTitle_numeromesa}" />
+                    <h:outputLabel value="#{bundle.EditMesaLabel_idareas}" for="idareas" />
+                    <h:selectOneMenu id="idareas" value="#{mesaController.selected.idareas}" title="#{bundle.EditMesaTitle_idareas}" required="true" requiredMessage="#{bundle.EditMesaRequiredMessage_idareas}">
+                        <f:selectItems value="#{areasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{mesaController.update}" value="#{bundle.EditMesaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMesaViewLink}"/>
+                <br />
+                <h:commandLink action="#{mesaController.prepareList}" value="#{bundle.EditMesaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMesaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

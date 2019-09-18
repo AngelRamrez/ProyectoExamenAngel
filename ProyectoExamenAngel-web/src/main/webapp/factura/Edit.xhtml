@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_idfactura}" for="idfactura" />
+                    <h:inputText id="idfactura" value="#{facturaController.selected.idfactura}" title="#{bundle.EditFacturaTitle_idfactura}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_idfactura}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{facturaController.selected.descripcion}" title="#{bundle.EditFacturaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_nit}" for="nit" />
+                    <h:selectOneMenu id="nit" value="#{facturaController.selected.nit}" title="#{bundle.EditFacturaTitle_nit}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_nit}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_idmesa}" for="idmesa" />
+                    <h:selectOneMenu id="idmesa" value="#{facturaController.selected.idmesa}" title="#{bundle.EditFacturaTitle_idmesa}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_idmesa}">
+                        <f:selectItems value="#{mesaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_idsucursal}" for="idsucursal" />
+                    <h:selectOneMenu id="idsucursal" value="#{facturaController.selected.idsucursal}" title="#{bundle.EditFacturaTitle_idsucursal}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_idsucursal}">
+                        <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_idmesero}" for="idmesero" />
+                    <h:selectOneMenu id="idmesero" value="#{facturaController.selected.idmesero}" title="#{bundle.EditFacturaTitle_idmesero}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_idmesero}">
+                        <f:selectItems value="#{meseroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{facturaController.update}" value="#{bundle.EditFacturaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturaViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturaController.prepareList}" value="#{bundle.EditFacturaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSucursalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSucursalLabel_idsucursal}" for="idsucursal" />
+                    <h:inputText id="idsucursal" value="#{sucursalController.selected.idsucursal}" title="#{bundle.CreateSucursalTitle_idsucursal}" required="true" requiredMessage="#{bundle.CreateSucursalRequiredMessage_idsucursal}"/>
+                    <h:outputLabel value="#{bundle.CreateSucursalLabel_nombresucursal}" for="nombresucursal" />
+                    <h:inputText id="nombresucursal" value="#{sucursalController.selected.nombresucursal}" title="#{bundle.CreateSucursalTitle_nombresucursal}" required="true" requiredMessage="#{bundle.CreateSucursalRequiredMessage_nombresucursal}"/>
+                    <h:outputLabel value="#{bundle.CreateSucursalLabel_ubicacion}" for="ubicacion" />
+                    <h:inputText id="ubicacion" value="#{sucursalController.selected.ubicacion}" title="#{bundle.CreateSucursalTitle_ubicacion}" required="true" requiredMessage="#{bundle.CreateSucursalRequiredMessage_ubicacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sucursalController.create}" value="#{bundle.CreateSucursalSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{sucursalController.prepareList}" value="#{bundle.CreateSucursalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSucursalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

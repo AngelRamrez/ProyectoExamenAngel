@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSucursalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSucursalLabel_idsucursal}"/>
+                    <h:outputText value="#{sucursalController.selected.idsucursal}" title="#{bundle.ViewSucursalTitle_idsucursal}"/>
+                    <h:outputText value="#{bundle.ViewSucursalLabel_nombresucursal}"/>
+                    <h:outputText value="#{sucursalController.selected.nombresucursal}" title="#{bundle.ViewSucursalTitle_nombresucursal}"/>
+                    <h:outputText value="#{bundle.ViewSucursalLabel_ubicacion}"/>
+                    <h:outputText value="#{sucursalController.selected.ubicacion}" title="#{bundle.ViewSucursalTitle_ubicacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sucursalController.destroyAndView}" value="#{bundle.ViewSucursalDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSucursalEditLink}"/>
+                <br />
+                <h:commandLink action="#{sucursalController.prepareCreate}" value="#{bundle.ViewSucursalCreateLink}" />
+                <br />
+                <h:commandLink action="#{sucursalController.prepareList}" value="#{bundle.ViewSucursalShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSucursalIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
